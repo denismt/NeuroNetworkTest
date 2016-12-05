@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.DataBox = new System.Windows.Forms.GroupBox();
+            this.DefineOkLabel = new System.Windows.Forms.Label();
+            this.DefineButton = new System.Windows.Forms.Button();
             this.ResultComboBox = new System.Windows.Forms.ComboBox();
             this.TrainOkLabel = new System.Windows.Forms.Label();
             this.TrainButton = new System.Windows.Forms.Button();
@@ -42,11 +44,17 @@
             this.WeightTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ResultBox = new System.Windows.Forms.GroupBox();
+            this.CarResultLabel = new System.Windows.Forms.Label();
             this.MapBox = new System.Windows.Forms.GroupBox();
             this.MapPanel = new System.Windows.Forms.Panel();
-            this.DefineButton = new System.Windows.Forms.Button();
-            this.DefineOkLabel = new System.Windows.Forms.Label();
-            this.ResultLabel = new System.Windows.Forms.Label();
+            this.CarPercentLabel = new System.Windows.Forms.Label();
+            this.PassengerPercentLabel = new System.Windows.Forms.Label();
+            this.PassengerResultLabel = new System.Windows.Forms.Label();
+            this.TruckPercentLabel = new System.Windows.Forms.Label();
+            this.TruckResultLabel = new System.Windows.Forms.Label();
+            this.TestLabel1 = new System.Windows.Forms.Label();
+            this.TestLabel2 = new System.Windows.Forms.Label();
+            this.TestLabel3 = new System.Windows.Forms.Label();
             this.DataBox.SuspendLayout();
             this.ResultBox.SuspendLayout();
             this.MapBox.SuspendLayout();
@@ -74,6 +82,27 @@
             this.DataBox.TabIndex = 0;
             this.DataBox.TabStop = false;
             this.DataBox.Text = "Train";
+            // 
+            // DefineOkLabel
+            // 
+            this.DefineOkLabel.AutoSize = true;
+            this.DefineOkLabel.ForeColor = System.Drawing.Color.ForestGreen;
+            this.DefineOkLabel.Location = new System.Drawing.Point(199, 230);
+            this.DefineOkLabel.Name = "DefineOkLabel";
+            this.DefineOkLabel.Size = new System.Drawing.Size(22, 13);
+            this.DefineOkLabel.TabIndex = 14;
+            this.DefineOkLabel.Text = "OK";
+            this.DefineOkLabel.Visible = false;
+            // 
+            // DefineButton
+            // 
+            this.DefineButton.Location = new System.Drawing.Point(173, 246);
+            this.DefineButton.Name = "DefineButton";
+            this.DefineButton.Size = new System.Drawing.Size(75, 23);
+            this.DefineButton.TabIndex = 13;
+            this.DefineButton.Text = "Define";
+            this.DefineButton.UseVisualStyleBackColor = true;
+            this.DefineButton.Click += new System.EventHandler(this.DefineButton_Click);
             // 
             // ResultComboBox
             // 
@@ -183,13 +212,31 @@
             // 
             // ResultBox
             // 
-            this.ResultBox.Controls.Add(this.ResultLabel);
+            this.ResultBox.Controls.Add(this.TestLabel3);
+            this.ResultBox.Controls.Add(this.TestLabel2);
+            this.ResultBox.Controls.Add(this.TestLabel1);
+            this.ResultBox.Controls.Add(this.TruckResultLabel);
+            this.ResultBox.Controls.Add(this.TruckPercentLabel);
+            this.ResultBox.Controls.Add(this.PassengerResultLabel);
+            this.ResultBox.Controls.Add(this.PassengerPercentLabel);
+            this.ResultBox.Controls.Add(this.CarPercentLabel);
+            this.ResultBox.Controls.Add(this.CarResultLabel);
             this.ResultBox.Location = new System.Drawing.Point(320, 315);
             this.ResultBox.Name = "ResultBox";
             this.ResultBox.Size = new System.Drawing.Size(300, 330);
             this.ResultBox.TabIndex = 1;
             this.ResultBox.TabStop = false;
             this.ResultBox.Text = "Result";
+            // 
+            // CarResultLabel
+            // 
+            this.CarResultLabel.AutoSize = true;
+            this.CarResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CarResultLabel.Location = new System.Drawing.Point(74, 52);
+            this.CarResultLabel.Name = "CarResultLabel";
+            this.CarResultLabel.Size = new System.Drawing.Size(13, 13);
+            this.CarResultLabel.TabIndex = 0;
+            this.CarResultLabel.Text = "1";
             // 
             // MapBox
             // 
@@ -209,35 +256,77 @@
             this.MapPanel.TabIndex = 0;
             this.MapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MapPanel_Paint);
             // 
-            // DefineButton
+            // CarPercentLabel
             // 
-            this.DefineButton.Location = new System.Drawing.Point(173, 246);
-            this.DefineButton.Name = "DefineButton";
-            this.DefineButton.Size = new System.Drawing.Size(75, 23);
-            this.DefineButton.TabIndex = 13;
-            this.DefineButton.Text = "Define";
-            this.DefineButton.UseVisualStyleBackColor = true;
-            this.DefineButton.Click += new System.EventHandler(this.DefineButton_Click);
+            this.CarPercentLabel.AutoSize = true;
+            this.CarPercentLabel.Location = new System.Drawing.Point(32, 52);
+            this.CarPercentLabel.Name = "CarPercentLabel";
+            this.CarPercentLabel.Size = new System.Drawing.Size(13, 13);
+            this.CarPercentLabel.TabIndex = 1;
+            this.CarPercentLabel.Text = "1";
             // 
-            // DefineOkLabel
+            // PassengerPercentLabel
             // 
-            this.DefineOkLabel.AutoSize = true;
-            this.DefineOkLabel.ForeColor = System.Drawing.Color.ForestGreen;
-            this.DefineOkLabel.Location = new System.Drawing.Point(199, 230);
-            this.DefineOkLabel.Name = "DefineOkLabel";
-            this.DefineOkLabel.Size = new System.Drawing.Size(22, 13);
-            this.DefineOkLabel.TabIndex = 14;
-            this.DefineOkLabel.Text = "OK";
-            this.DefineOkLabel.Visible = false;
+            this.PassengerPercentLabel.AutoSize = true;
+            this.PassengerPercentLabel.Location = new System.Drawing.Point(32, 86);
+            this.PassengerPercentLabel.Name = "PassengerPercentLabel";
+            this.PassengerPercentLabel.Size = new System.Drawing.Size(13, 13);
+            this.PassengerPercentLabel.TabIndex = 2;
+            this.PassengerPercentLabel.Text = "1";
             // 
-            // ResultLabel
+            // PassengerResultLabel
             // 
-            this.ResultLabel.AutoSize = true;
-            this.ResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ResultLabel.Location = new System.Drawing.Point(35, 49);
-            this.ResultLabel.Name = "ResultLabel";
-            this.ResultLabel.Size = new System.Drawing.Size(0, 20);
-            this.ResultLabel.TabIndex = 0;
+            this.PassengerResultLabel.AutoSize = true;
+            this.PassengerResultLabel.Location = new System.Drawing.Point(74, 86);
+            this.PassengerResultLabel.Name = "PassengerResultLabel";
+            this.PassengerResultLabel.Size = new System.Drawing.Size(13, 13);
+            this.PassengerResultLabel.TabIndex = 3;
+            this.PassengerResultLabel.Text = "1";
+            // 
+            // TruckPercentLabel
+            // 
+            this.TruckPercentLabel.AutoSize = true;
+            this.TruckPercentLabel.Location = new System.Drawing.Point(32, 120);
+            this.TruckPercentLabel.Name = "TruckPercentLabel";
+            this.TruckPercentLabel.Size = new System.Drawing.Size(13, 13);
+            this.TruckPercentLabel.TabIndex = 4;
+            this.TruckPercentLabel.Text = "1";
+            // 
+            // TruckResultLabel
+            // 
+            this.TruckResultLabel.AutoSize = true;
+            this.TruckResultLabel.Location = new System.Drawing.Point(74, 120);
+            this.TruckResultLabel.Name = "TruckResultLabel";
+            this.TruckResultLabel.Size = new System.Drawing.Size(13, 13);
+            this.TruckResultLabel.TabIndex = 5;
+            this.TruckResultLabel.Text = "1";
+            // 
+            // TestLabel1
+            // 
+            this.TestLabel1.AutoSize = true;
+            this.TestLabel1.Location = new System.Drawing.Point(222, 52);
+            this.TestLabel1.Name = "TestLabel1";
+            this.TestLabel1.Size = new System.Drawing.Size(35, 13);
+            this.TestLabel1.TabIndex = 6;
+            this.TestLabel1.Text = "label6";
+            // 
+            // TestLabel2
+            // 
+            this.TestLabel2.AutoSize = true;
+            this.TestLabel2.Location = new System.Drawing.Point(222, 86);
+            this.TestLabel2.Name = "TestLabel2";
+            this.TestLabel2.Size = new System.Drawing.Size(35, 13);
+            this.TestLabel2.TabIndex = 7;
+            this.TestLabel2.Text = "label7";
+            // 
+            // TestLabel3
+            // 
+            this.TestLabel3.AutoSize = true;
+            this.TestLabel3.Location = new System.Drawing.Point(222, 120);
+            this.TestLabel3.Name = "TestLabel3";
+            this.TestLabel3.Size = new System.Drawing.Size(35, 13);
+            this.TestLabel3.TabIndex = 8;
+            this.TestLabel3.Text = "label8";
             // 
             // MainForm
             // 
@@ -281,7 +370,15 @@
         private System.Windows.Forms.Panel MapPanel;
         private System.Windows.Forms.Button DefineButton;
         private System.Windows.Forms.Label DefineOkLabel;
-        private System.Windows.Forms.Label ResultLabel;
+        private System.Windows.Forms.Label CarResultLabel;
+        private System.Windows.Forms.Label CarPercentLabel;
+        private System.Windows.Forms.Label PassengerResultLabel;
+        private System.Windows.Forms.Label PassengerPercentLabel;
+        private System.Windows.Forms.Label TruckResultLabel;
+        private System.Windows.Forms.Label TruckPercentLabel;
+        private System.Windows.Forms.Label TestLabel3;
+        private System.Windows.Forms.Label TestLabel2;
+        private System.Windows.Forms.Label TestLabel1;
     }
 }
 

@@ -8,6 +8,14 @@ namespace NeuroNetworkTest.NeuroNet
 {
     public class Network
     {
+        private decimal _coeff;
+        public decimal Coeff
+        {
+            get
+            {
+                return _coeff;
+            }
+        }
         private Neuron[] _neurons;
         public Neuron[] Neurons
         {
@@ -19,6 +27,7 @@ namespace NeuroNetworkTest.NeuroNet
         public decimal[] Inputs { get; }
         public Network(int inputsLength,int outputsLength)
         {
+            _coeff = 1;
             Inputs = new decimal[inputsLength];
             _neurons = new Neuron[outputsLength];
             for (int i=0;i<outputsLength;i++)
@@ -42,13 +51,29 @@ namespace NeuroNetworkTest.NeuroNet
                 }
             }
 
+            //_neurons[correcrOutputNeuronNumber].HighWeights();
+
+            //for (int i = 0; i < Neurons.Length; i++)
+            //{
+            //    if (correcrOutputNeuronNumber != i)
+            //    {
+            //        _neurons[i].LowWeights();
+            //    }
+
+            //}
+
+            // _coeff = _coeff * 0.99m;
+
             if (maxNeuronNumber != correcrOutputNeuronNumber)
             {
                 _neurons[correcrOutputNeuronNumber].HighWeights();
                 if (maxNeuronNumber > -1)
                 {
+
                     _neurons[maxNeuronNumber].LowWeights();
+
                 }
+                _coeff = _coeff * 0.99m;
             }
         }
 

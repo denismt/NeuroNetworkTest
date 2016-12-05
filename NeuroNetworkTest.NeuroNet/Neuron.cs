@@ -11,6 +11,15 @@ namespace NeuroNetworkTest.NeuroNet
         private Network _network;
         private decimal[] _weights;
         private decimal _output;
+        private decimal _maxValue;
+        private decimal _activationLevel;
+        public decimal ActivationLevel
+        {
+            get
+            {
+                return _activationLevel;
+            }
+        }
         public decimal[] Weigts
         {
             get
@@ -28,8 +37,12 @@ namespace NeuroNetworkTest.NeuroNet
         public Neuron(Network network)
         {
             _network = network;
+            _activationLevel = 0;
             _weights = new decimal[_network.Inputs.Length];
-            for (int i=0;i<_weights.Length;i++)
+            _maxValue = 0;
+            Random random = new Random();
+            for (int i = 0; i < _weights.Length; i++)
+                //_weights[i] = ((decimal)random.Next(9)+1)/100;
                 _weights[i] = 0;
         }
         public void Process()
@@ -39,13 +52,33 @@ namespace NeuroNetworkTest.NeuroNet
             {
                 sum += _network.Inputs[i] * _weights[i];
             }
+
+            if (sum < 0)
+                sum = 0;
+            else
+            if (sum >= 1)
+                sum = 1;
+
+            //if (sum < 0m)
+            //    sum = 0;
+            //else
+            //    sum = 1;
+
+            //sum = (decimal)(1 / (1 + Math.Exp((double)(0m - sum))));
+
             _output = sum;
+            if (_maxValue<sum)
+                _maxValue=sum;
+            if (_maxValue!=0)
+                _activationLevel = sum / _maxValue * 100;
         }
         public void HighWeights()
         {
             for (int i=0;i<_weights.Length;i++)
             {
-                _weights[i] += _network.Inputs[i];
+                _weights[i] += (1-_output)*_network.Inputs[i]*_network.Coeff;
+                //if (_weights[i] < 0)
+                    //_weights[i] = 0;
             }
         }
 
@@ -53,9 +86,12 @@ namespace NeuroNetworkTest.NeuroNet
         {
             for (int i = 0; i < _weights.Length; i++)
             {
-                _weights[i] -= _network.Inputs[i]/3;
-                if (_weights[i] < 0)
-                    _weights[i] = 0;
+                //if (_output >= 0.3m)
+                //{
+                _weights[i] -= _output * _network.Inputs[i] * _network.Coeff;
+                    //if (_weights[i] < 0)
+                        //_weights[i] = 0;
+                //}
             }
         }
     }
